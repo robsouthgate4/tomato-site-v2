@@ -10,7 +10,7 @@ import {
 } from '../../modules/counter'
 
 const Home = props => (
-  <div>
+    <div>
     <h1>Home</h1>
     <p>Count: {props.count}</p>
 
@@ -24,7 +24,7 @@ const Home = props => (
       <button onClick={props.decrementAsync} disabled={props.isDecrementing}>Decrement Async</button>
     </p>
 
-    <p><button onClick={() => props.changePage()}>Go to about page via redux</button></p>
+    <p><button onClick={() => props.changePage('/about-us')}>Go to about page via redux</button></p>
   </div>
 )
 
@@ -39,7 +39,7 @@ const mapDispatchToProps = dispatch => bindActionCreators({
   incrementAsync,
   decrement,
   decrementAsync,
-  changePage: () => push('/about-us')
+  changePage: (page) => push(page)
 }, dispatch)
 
 export default connect(
