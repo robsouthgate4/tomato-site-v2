@@ -20,7 +20,8 @@ const Reviews = props => (
 )
 
 const currentReviewFilter = (reviews, id) => {
-    return reviews.byId[id]
+    console.log(reviews.byId[2]);
+    return reviews.byId[2]
 }
 
 const mapStateToProps = (state, ownProps) => ({
