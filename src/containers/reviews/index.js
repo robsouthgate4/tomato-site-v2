@@ -27,7 +27,12 @@ class Reviews extends React.Component {
 }
 
 const currentReviewFilter = (reviews, id) => {
+<<<<<<< HEAD
 
+=======
+    console.log(reviews.byId[2]);
+    return reviews.byId[2]
+>>>>>>> 417cfe55874d781f8fb501ce341af41b734ba7d3
 }
 
 const mapStateToProps = (state, {match}) => ({
