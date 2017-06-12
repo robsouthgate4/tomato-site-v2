@@ -1,40 +1,44 @@
 import React from 'react'
-import { Route, Link, Switch } from 'react-router-dom'
+import { Route, Link, Switch, withRouter } from 'react-router-dom'
 import { push } from 'react-router-redux'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import  ReviewOverview  from './ReviewOverview';
-import  ReviewSingle  from './ReviewSingle';
+import  ReviewForm  from '../../components/ReviewForm';
+import { getReviews } from '../../services/reviews';
 
-import {
-} from '../../modules/reviews'
 
-const Reviews = props => (
-    <div>
-        <h1>Reviews</h1>
-        <Switch>
-            <Route exact path='/reviews' component={ReviewOverview}/>
-            <Route path='/reviews/:id' component={ReviewSingle}/>
-        </Switch>
-    </div>
-)
+class Reviews extends React.Component {
 
-const currentReviewFilter = (reviews, id) => {
-    return reviews.byId[id]
+    componentDidMount = () => {
+        console.log(this.props);
+        getReviews('2')
+            .then(reviews => { console.log(reviews) })
+    }
+
+    componentWillMount = () => {
+
+    }
+
+    render () {
+        return <div>
+                    <h1>Reviews</h1>
+                </div>
+    }
 }
 
-const mapStateToProps = (state, ownProps) => ({
-  currentReview: currentReviewFilter(
-      state.reviews,
-      ownProps.match.params.id
-  )
+const currentReviewFilter = (reviews, id) => {
+
+}
+
+const mapStateToProps = (state, {match}) => ({
+    filter: match
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
   changePage: (page) => push(page)
 }, dispatch)
 
-export default connect(
+export default withRouter(connect(
   mapStateToProps,
   mapDispatchToProps
-)(Reviews)
+)(Reviews))

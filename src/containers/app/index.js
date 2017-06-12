@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Link } from 'react-router-dom'
-import Home from '../home'
 import Login from '../login'
 import Reviews from '../reviews';
 import AuthGuard from '../../components/AuthGuard'
@@ -15,7 +14,7 @@ const App = () => (
 
     <main>
       <Route exact path="/login" component={Login}></Route>
-      <Route path="/reviews" component={Reviews} />
+      <Route path="/reviews/:id?" component={Reviews} />
     </main>
   </div>
 )

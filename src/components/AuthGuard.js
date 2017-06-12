@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react'
 
 class AuthGuard extends React.Component {
     render () {
-        return 'Authguard'
+        return <div>AuthGuard</div>
     }
 }
 

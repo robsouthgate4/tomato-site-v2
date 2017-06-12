@@ -1,9 +1,7 @@
-import data from '../db.json' // TODO: replace with api data
 
-const reviews = data.entities.reviews;
 
 const initialState = {
-  ...reviews
+
 }
 
 export default (state = initialState, action) => {
