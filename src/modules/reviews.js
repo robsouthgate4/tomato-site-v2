@@ -1,7 +1,7 @@
-const LOAD   = 'my-app/widgets/LOAD';
-const CREATE = 'my-app/widgets/CREATE';
-const UPDATE = 'my-app/widgets/UPDATE';
-const REMOVE = 'my-app/widgets/REMOVE';
+const LOAD   = 'LOAD';
+const CREATE = 'CREATE';
+const UPDATE = 'UPDATE';
+const REMOVE = 'REMOVE';
 // Actions
 
 const initialState = {

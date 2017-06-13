@@ -5,6 +5,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import  ReviewForm  from '../../components/ReviewForm';
 import { getReviews } from '../../services/reviews';
+import {login} from '../../modules/user';
 
 
 class Reviews extends React.Component {
@@ -36,7 +37,8 @@ const mapStateToProps = (state, {match}) => ({
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: (page) => push(page)
+  changePage: (page) => push(page),
+
 }, dispatch)
 
 export default withRouter(connect(
