@@ -10,8 +10,9 @@ import { getReviews } from '../../services/reviews';
 class Reviews extends React.Component {
 
     componentDidMount = () => {
-        console.log(this.props);
-        getReviews('2')
+        const { filter } = this.props;
+
+        getReviews(filter)
             .then(reviews => { console.log(reviews) })
     }
 
@@ -27,16 +28,11 @@ class Reviews extends React.Component {
 }
 
 const currentReviewFilter = (reviews, id) => {
-<<<<<<< HEAD
 
-=======
-    console.log(reviews.byId[2]);
-    return reviews.byId[2]
->>>>>>> 417cfe55874d781f8fb501ce341af41b734ba7d3
 }
 
 const mapStateToProps = (state, {match}) => ({
-    filter: match
+    filter: match.params.id
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators({
