@@ -22,9 +22,13 @@ class Reviews extends React.Component {
     }
 
     render () {
-        return <div>
-                    <h1>Reviews</h1>
-                </div>
+
+        const { match } = this.props;
+
+        console.log(match);
+        // Return component based on params.
+        return match.params.id ? <h1>Review detail</h1> : <h1>Review overview</h1>
+
     }
 }
 
