@@ -1,7 +1,9 @@
 import React, {PropTypes} from 'react'
 import {fakeAuth} from '../../services/fakeAuth';
+import { connect } from 'react-redux'
 import {BrowserRouter as Router, Route, Link, Redirect, withRouter} from 'react-router-dom'
 import LoginForm from '../../components/LoginForm';
+import { login } from '../../modules/user';
 
 class Login extends React.Component {
 
@@ -9,9 +11,18 @@ class Login extends React.Component {
         redirectToReferrer: false
     }
 
+    componentDidMount = () => {
+
+    }
+
     login = () => {
-        fakeAuth.authenticate(() => {
+        fakeAuth.authenticate(() => { // TODO: apply real auth returning token
             this.setState({redirectToReferrer: true})
+            this.props.onPageLoad({
+                id: 1,
+                firstname: 'Rob',
+                lastname: 'Southgate'
+            });
         })
     }
 
@@ -35,4 +46,17 @@ class Login extends React.Component {
     }
 }
 
-export default Login
+const mapStateToProps = (state, {match}) => ({
+
+});
+
+const mapDispatchToProps = dispatch =>({
+  onPageLoad(userData){
+      dispatch(login(userData))
+  }
+});
+
+export default withRouter(connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Login))

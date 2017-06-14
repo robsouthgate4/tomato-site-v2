@@ -5,7 +5,7 @@ const REMOVE = 'REMOVE';
 // Actions
 
 const initialState = {
-
+    reviews:[]
 }
 
 export default function reducer(state = initialState, action){

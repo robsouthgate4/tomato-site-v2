@@ -6,6 +6,7 @@ export const LOGIN_REQUEST = 'user/LOGIN_REQUEST'
 
 const initialState = { // TODO: finish user obj structure
     isLoggedIn: false,
+    isLoggingIn: false,
     id: null,
     firstname: '',
     lastname: ''
@@ -13,9 +14,15 @@ const initialState = { // TODO: finish user obj structure
 
 export default function reducer(state = initialState, action){
   switch (action.type) {
+    case LOGIN_REQUEST:
+        return _.assign({}, state, {
+            isLoggingIn: true
+        })
+    break
     case LOGIN_SUCCESS:
         return _.assign({}, state, {
             isLoggedIn: true,
+            isLoggingIn: false,
             id: action.user.id,
             firstname: action.user.firstname,
             lastname: action.user.lastname

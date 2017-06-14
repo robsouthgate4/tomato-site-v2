@@ -1,3 +1,8 @@
+/**
+ * loadstate from localstorage and parse it
+ * @return data obj or undefined
+ */
+
 export const loadState = () => {
     try {
         const serializedState = localStorage.getItem('state')
@@ -9,6 +14,11 @@ export const loadState = () => {
         return undefined
     }
 }
+
+/**
+ * Save to state to local store
+ * @param state object from redux store
+ */
 
 export const saveState = (state) => {
     try {
