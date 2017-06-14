@@ -38,7 +38,9 @@ const store = createStore(
 )
 
 store.subscribe(throttle(() => {
-    saveState(store.getState())
+    saveState({
+        user: store.getState().user
+    })
 }, 1000));
 
 export default store

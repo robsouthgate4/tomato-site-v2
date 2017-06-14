@@ -5,13 +5,19 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import  ReviewForm  from '../../components/ReviewForm';
 import { getReviews } from '../../services/reviews';
-import {login} from '../../modules/user';
+import { login } from '../../modules/user';
 
 
 class Reviews extends React.Component {
 
     componentDidMount = () => {
         const { filter } = this.props;
+
+        this.props.onPageLoad({ // TODO: move to login container
+            id: 1,
+            firstname: 'Rob',
+            lastname: 'Southgate'
+        });
 
         getReviews(filter)
             .then(reviews => { console.log(reviews) })
@@ -36,10 +42,11 @@ const mapStateToProps = (state, {match}) => ({
     filter: match.params.id
 });
 
-const mapDispatchToProps = dispatch => bindActionCreators({
-  changePage: (page) => push(page),
-
-}, dispatch)
+const mapDispatchToProps = dispatch =>({
+  onPageLoad(userData){
+      dispatch(login(userData))
+  }
+});
 
 export default withRouter(connect(
   mapStateToProps,
