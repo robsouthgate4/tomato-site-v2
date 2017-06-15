@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react'
 import ProgressLine from './ProgressLine'
 
-const ReviewTemplate = (props) => {
+const ReviewDetail = (props) => {
     return (
         <div>
             <div className="review-template-left">
@@ -37,4 +37,4 @@ const ReviewTemplate = (props) => {
     )
 }
 
-export default ReviewTemplate
+export default ReviewDetail
