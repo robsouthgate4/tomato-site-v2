@@ -1,44 +1,31 @@
 import React, {PropTypes} from 'react'
 import {fakeAuth} from '../../services/fakeAuth';
 import { connect } from 'react-redux'
-import {BrowserRouter as Router, Route, Link, Redirect, withRouter} from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Redirect, withRouter} from 'react-router-dom'
 import LoginForm from '../../components/LoginForm';
-import { login } from '../../modules/user';
+import { login } from '../../modules/auth';
 
 class Login extends React.Component {
-
-    state = {
-        redirectToReferrer: false
-    }
 
     componentDidMount = () => {
 
     }
 
     login = () => {
-        fakeAuth.authenticate(() => { // TODO: apply real auth returning token
-            this.setState({redirectToReferrer: true})
-            this.props.onPageLoad({
-                id: 1,
-                firstname: 'Rob',
-                lastname: 'Southgate'
-            });
-        })
+        // Simulate return token from api
+        // successfull login
+        this.props.loginUser({
+            'username': 'username',
+            'password': 'password'
+        });
+
+        setTimeout(() => {this.props.history.push('/dashboard')}, 1100)
+
+
+
     }
 
     render() {
-
-        const {from} = this.props.location.state || {
-            from: {
-                pathname: '/dashboard'
-            }
-        }
-
-        const {redirectToReferrer} = this.state
-
-        if (redirectToReferrer) {
-            return (<Redirect to={from}/>)
-        }
 
         return <div>
                     <LoginForm onClick={this.login}></LoginForm>
@@ -51,7 +38,7 @@ const mapStateToProps = (state, {match}) => ({
 });
 
 const mapDispatchToProps = dispatch =>({
-  onPageLoad(userData){
+  loginUser(userData){
       dispatch(login(userData))
   }
 });

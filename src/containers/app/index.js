@@ -1,28 +1,33 @@
 import React from 'react';
-import {Route, Link, Redirect, Switch} from 'react-router-dom'
-import Departments from '../departments';
+import {Route, Link, Redirect, Switch, withRouter} from 'react-router-dom'
+import { connect } from 'react-redux';
 import Login from '../login'
-import Reviews from '../reviews';
-import { fakeAuth } from '../../services/fakeAuth';
-import AppRouting from '../../components/AppRouting';
+import Dashboard from '../dashboard';
 
-const App = () => (
+const App = (props) => {
 
-    <div>
-        <header>
-            <Link to="/dashboard/reviews">My review</Link>
-            <Link to="/dashboard/manage-reviews">Manage reviews</Link>
-            <Link to="/dashboard/departments">Departments</Link>
-        </header>
+        const { loggedIn } = props;
 
-        <main>
-            <AppRouting></AppRouting>
-        </main>
+        const PrivateRoute = ({ component: Component, ...rest }) => (
+          <Route {...rest} render={props => (
+            loggedIn ? (
+              <Component {...props}/>
+            ) : (
+              <Redirect to='/login'/>
+            )
+          )}/>
+        )
 
-    </div>
-)
+        return <div>
+                    <Route path="/login" component={Login}/>
+                    <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
+                </div>
+}
 
+const mapStateToProps = state => {
+  return {
+    loggedIn: state.auth.isLoggedIn
+  }
+}
 
-
-
-export default App
+export default withRouter(connect(mapStateToProps)(App));

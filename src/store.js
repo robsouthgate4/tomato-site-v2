@@ -28,19 +28,11 @@ const composedEnhancers = compose(
   ...enhancers
 )
 
-const persistedState = loadState()
-
 const store = createStore(
   rootReducer,
   initialState,
-  composedEnhancers,
-  persistedState
+  composedEnhancers
 )
 
-store.subscribe(throttle(() => {
-    saveState({
-        user: store.getState().user
-    })
-}, 1000));
 
 export default store

@@ -3,9 +3,9 @@
  * @return data obj or undefined
  */
 
-export const loadState = () => {
+export const getItem = (item) => {
     try {
-        const serializedState = localStorage.getItem('state')
+        const serializedState = localStorage.getItem(item)
         if (serializedState === null) {
             return undefined
         }
@@ -20,10 +20,10 @@ export const loadState = () => {
  * @param state object from redux store
  */
 
-export const saveState = (state) => {
+export const saveItem = (id, token) => {
     try {
-        const serializedState = JSON.stringify(state);
-        localStorage.setItem('state', serializedState)
+        const serializedState = JSON.stringify(token);
+        localStorage.setItem(id, token)
     } catch (e) {
         console.log(e);
     }
