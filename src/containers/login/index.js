@@ -5,9 +5,13 @@ import { BrowserRouter as Router, Route, Link, Redirect, withRouter} from 'react
 import LoginForm from '../../components/LoginForm';
 import { login } from '../../modules/auth';
 
+import { saveItem, getItem } from '../../localStorage'
+
 class Login extends React.Component {
 
     componentDidMount = () => {
+
+        console.log(getItem('jwt'))
 
     }
 

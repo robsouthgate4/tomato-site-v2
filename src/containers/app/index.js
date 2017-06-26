@@ -1,33 +1,38 @@
 import React from 'react';
 import {Route, Link, Redirect, Switch, withRouter} from 'react-router-dom'
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import Login from '../login'
 import Dashboard from '../dashboard';
+import {loadUserFromToken, validateSession} from '../../modules/auth'
 
-const App = (props) => {
+export class App extends React.Component {
 
-        const { loggedIn } = props;
+    componentDidMount = () => {
+        console.log(this.props)
+        this.props.loadUserFromToken()
+    }
 
-        const PrivateRoute = ({ component: Component, ...rest }) => (
-          <Route {...rest} render={props => (
-            loggedIn ? (
-              <Component {...props}/>
-            ) : (
-              <Redirect to='/login'/>
-            )
-          )}/>
-        )
+    render() {
 
         return <div>
-                    <Route path="/login" component={Login}/>
-                    <PrivateRoute path="/dashboard" component={Dashboard}></PrivateRoute>
-                </div>
+            <Route path="/login" component={Login}/>
+            <Route path="/dashboard" component={Dashboard}></Route>
+        </div>
+    }
 }
 
 const mapStateToProps = state => {
-  return {
-    loggedIn: state.auth.isLoggedIn
-  }
+    return {loggedIn: state.auth.isLoggedIn}
 }
 
-export default withRouter(connect(mapStateToProps)(App));
+const mapDispatchToProps = dispatch => {
+    return {
+        loadUserFromToken : () => {
+            let token = localStorage.getItem('jwt')
+            if (!token || token === '') return
+            dispatch(validateSession(token))
+        }
+    }
+}
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(App));

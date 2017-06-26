@@ -20,10 +20,10 @@ export const getItem = (item) => {
  * @param state object from redux store
  */
 
-export const saveItem = (id, token) => {
+export const saveItem = (item, data) => {
     try {
-        const serializedState = JSON.stringify(token);
-        localStorage.setItem(id, token)
+        const serializedState = JSON.stringify(data);
+        localStorage.setItem(item, data)
     } catch (e) {
         console.log(e);
     }
