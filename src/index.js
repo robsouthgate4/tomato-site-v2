@@ -3,7 +3,7 @@ import {render} from 'react-dom'
 import {Provider} from 'react-redux'
 import {ConnectedRouter} from 'react-router-redux'
 import store, {history} from './store'
-import App from './containers/app'
+import  { App } from './containers/app'
 import {BrowserRouter as Router, Route, Link, Redirect, withRouter, Switch} from 'react-router-dom'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Login from './containers/login'

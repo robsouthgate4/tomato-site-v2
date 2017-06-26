@@ -11,8 +11,6 @@ class Login extends React.Component {
 
     componentDidMount = () => {
 
-        console.log(getItem('jwt'))
-
     }
 
     login = () => {
@@ -24,8 +22,6 @@ class Login extends React.Component {
         });
 
         setTimeout(() => {this.props.history.push('/dashboard')}, 1100)
-
-
 
     }
 
